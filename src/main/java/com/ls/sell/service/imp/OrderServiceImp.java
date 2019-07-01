@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-@Transactional//如果抛出异常会进行回滚
+//@Transactional//如果抛出异常会进行回滚
 public class OrderServiceImp implements OrderService {
 
     @Autowired
@@ -63,7 +63,9 @@ public class OrderServiceImp implements OrderService {
 
             orderDetail.setDetailId(KeyUtil.genUniqueKey());
             orderDetail.setOrderId(orderId);
-            BeanUtils.copyProperties(productInfo,orderDetail);
+            BeanUtils.copyProperties(productInfo.get(),orderDetail);
+
+
             orderDetailRepository.save(orderDetail);
 
 

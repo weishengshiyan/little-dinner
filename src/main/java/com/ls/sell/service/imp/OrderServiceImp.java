@@ -218,10 +218,10 @@ public class OrderServiceImp implements OrderService {
             log.error("【订单支付完成】 订单状态不正常，orderId={},orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
-            //判断支付状态
-            if (!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())) {
-                log.error("【订单支付完成】 订单支付状态不正确，orderDTO={}", orderDTO);
-                throw new SellException(ResultEnum.ORDER_PAY_STATUS_ERROR);
+        //判断支付状态
+        if (!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())) {
+            log.error("【订单支付完成】 订单支付状态不正确，orderDTO={}", orderDTO);
+            throw new SellException(ResultEnum.ORDER_PAY_STATUS_ERROR);
 
         }
         //修改支付状态

@@ -22,6 +22,7 @@ import java.util.Optional;
 public class ProductServiceImp implements ProductService {
     @Autowired
     private ProductInfoRepository reponsitory;
+
     @Override
     public Optional<ProductInfo> findOne(String productId) {
 
@@ -48,13 +49,13 @@ public class ProductServiceImp implements ProductService {
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {
 
-        for (CartDTO cartDTO: cartDTOList){
-            Optional<ProductInfo> productInfo= reponsitory.findById(cartDTO.getProductId());
-            if (productInfo==null){
+        for (CartDTO cartDTO : cartDTOList) {
+            Optional<ProductInfo> productInfo = reponsitory.findById(cartDTO.getProductId());
+            if (productInfo == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
 
             }
-            Integer result =productInfo.get().getProductStock()+cartDTO.getProductQuantity();
+            Integer result = productInfo.get().getProductStock() + cartDTO.getProductQuantity();
             productInfo.get().setProductStock(result);
             reponsitory.save(productInfo.get());
         }
@@ -65,18 +66,18 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
 
-        for(CartDTO cartDTO: cartDTOList){
+        for (CartDTO cartDTO : cartDTOList) {
             Optional<ProductInfo> productInfo = reponsitory.findById(cartDTO.getProductId());
-            if(productInfo.get()==null){
+            if (productInfo.get() == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
 
-            Integer result=productInfo.get().getProductStock()-cartDTO.getProductQuantity();
-                if(result<0){
-                    throw  new SellException(ResultEnum.PRODUCT_NOT_ERROR);
+            Integer result = productInfo.get().getProductStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_ERROR);
 
-                }
-                productInfo.get().setProductStock(result);
+            }
+            productInfo.get().setProductStock(result);
 
             reponsitory.save(productInfo.get());
         }

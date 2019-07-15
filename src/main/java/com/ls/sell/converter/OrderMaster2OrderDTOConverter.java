@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 //转换器
 public class OrderMaster2OrderDTOConverter {
 
-    public  static OrderDTO convert(OrderMaster orderMaster){
+    public static OrderDTO convert(OrderMaster orderMaster) {
 
-        OrderDTO orderDTO=new OrderDTO();
-        BeanUtils.copyProperties(orderMaster,orderDTO);
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster, orderDTO);
         return orderDTO;
     }
 
-    public  static List<OrderDTO> convert(List<OrderMaster> orderMasters) {
+    public static List<OrderDTO> convert(List<OrderMaster> orderMasters) {
 
-        return orderMasters.stream().map(e->convert(e)
+        return orderMasters.stream().map(e -> convert(e)
         ).collect(Collectors.toList());
     }
 }

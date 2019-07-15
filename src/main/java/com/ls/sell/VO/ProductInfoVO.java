@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
 public class ProductInfoVO {
 
@@ -17,9 +18,9 @@ public class ProductInfoVO {
     private BigDecimal productPrice;
 
     @JsonProperty("decription")
-    private  String productDescription;
+    private String productDescription;
 
     @JsonProperty("icon")
-    private  String productIcon;
+    private String productIcon;
 
 }

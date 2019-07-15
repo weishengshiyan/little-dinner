@@ -20,7 +20,7 @@ public class ProductCategory {
 
 //    private  Date updateTime;
 
-    private  String categoryName;
+    private String categoryName;
 
     private Integer categoryType;
 
@@ -36,13 +36,15 @@ public class ProductCategory {
 //                ", updateTime=" + updateTime +
                 '}';
     }
-    public ProductCategory(){}
 
-public  ProductCategory(String categoryName,Integer categoryType){
-        this.categoryName=categoryName;
-        this.categoryType=categoryType;
+    public ProductCategory() {
+    }
 
-}
+    public ProductCategory(String categoryName, Integer categoryType) {
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+
+    }
 
 
 }

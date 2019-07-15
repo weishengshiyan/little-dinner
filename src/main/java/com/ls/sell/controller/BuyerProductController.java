@@ -31,14 +31,14 @@ public class BuyerProductController {
     private CategoryService categoryService;
 
     @GetMapping("/list")
-    public ResultVO list(){
+    public ResultVO list() {
         //查询所有的上架的商品
-        List<ProductInfo> productInfos =productService.findupAll();
-
+        List<ProductInfo> productInfos = productService.findupAll();
+        System.out.println("端口8888执行了一次");
         //查询所有类目
         List<Integer> categoryList = new ArrayList<>();
         //传统方法 //将查到的上架商品的类型同过for循环，添加到list中在查出来
-        for (ProductInfo productInfo :productInfos){
+        for (ProductInfo productInfo : productInfos) {
             //获取产品的类TypeId
             categoryList.add(productInfo.getCategoryType());
         }
@@ -46,24 +46,24 @@ public class BuyerProductController {
         List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryList);
 
         //数据整合
-        List<ProductVO> productVOList=new ArrayList<>();
+        List<ProductVO> productVOList = new ArrayList<>();
         //把查到的产品分类进行遍历
-        for(ProductCategory productCategory : productCategoryList){
-            ProductVO productVO= new ProductVO();
+        for (ProductCategory productCategory : productCategoryList) {
+            ProductVO productVO = new ProductVO();
             //将创建的二级name type 和foods属性个类目信息中的CategoryType，CategoryName 对照
             productVO.setCategoryType(productCategory.getCategoryType());
             productVO.setCategoryName(productCategory.getCategoryName());
 
             //foods属性包含了productInfo中的属性信息
-            List<ProductInfoVO> productInfoVOList=new ArrayList<>();
+            List<ProductInfoVO> productInfoVOList = new ArrayList<>();
 
-            for (ProductInfo productInfo:productInfos){
-                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())){
+            for (ProductInfo productInfo : productInfos) {
+                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
 
 
-                    ProductInfoVO productInfoVO  =new ProductInfoVO();
+                    ProductInfoVO productInfoVO = new ProductInfoVO();
                     //spring中的工具类，可以直接拷贝有相同属性的数据，
-                    BeanUtils.copyProperties(productInfo,productInfoVO);
+                    BeanUtils.copyProperties(productInfo, productInfoVO);
                     //将产品的信息直接放入到类目的foods中
                     productInfoVOList.add(productInfoVO);
 
@@ -76,9 +76,6 @@ public class BuyerProductController {
         }
 
 
-
-
-
 //        //创建一个表头
 //        ResultVO resultVO =new ResultVO();
 //        //中间部分
@@ -88,7 +85,7 @@ public class BuyerProductController {
 //        //将产品的数据作为一个list放入到中间部分的list中
 //        productVO.setProductInfoVOList(Arrays.asList(productInfoVO));
 //
-        ResultVO resultVO=new ResultVO();
+        ResultVO resultVO = new ResultVO();
 
 
 //        resultVO.setCode(0);

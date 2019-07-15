@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
+
 @Data
 public class ProductVO {
 
@@ -11,7 +12,7 @@ public class ProductVO {
     private String categoryName;
 
     @JsonProperty("type")
-    private  Integer categoryType;
+    private Integer categoryType;
 
     @JsonProperty("foods")
     private List<ProductInfoVO> productInfoVOList;

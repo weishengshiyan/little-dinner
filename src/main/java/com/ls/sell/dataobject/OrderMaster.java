@@ -16,24 +16,40 @@ import java.util.List;
 @DynamicUpdate
 public class OrderMaster {
     @Id
-    private  String orderId;
+    private String orderId;
 
     private String buyerName;
-    /**电话*/
+    /**
+     * 电话
+     */
     private String buyerPhone;
-    /**地址*/
+    /**
+     * 地址
+     */
     private String buyerAddress;
-    /**opendid*/
+    /**
+     * opendid
+     */
     private String buyerOpenid;
-    /**数量*/
+    /**
+     * 数量
+     */
     private BigDecimal orderAmount;
-    /**订单状态*/
-    private Integer orderStatus= OrderStatusEnum.NEW.getCode();
-    /**支付状态*/
-    private Integer PayStatus= PayStatusEnum.WAIT.getCode();
-    /**创建时间*/
+    /**
+     * 订单状态
+     */
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    /**
+     * 支付状态
+     */
+    private Integer PayStatus = PayStatusEnum.WAIT.getCode();
+    /**
+     * 创建时间
+     */
     private Date createTime;
-    /**更新时间*/
-    private  Date updateTime;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
 }

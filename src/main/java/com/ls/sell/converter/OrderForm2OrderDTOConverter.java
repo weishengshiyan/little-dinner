@@ -16,10 +16,10 @@ import java.util.List;
 @Slf4j
 public class OrderForm2OrderDTOConverter {
 
-    public  static OrderDTO convert(OrderForm orderForm){
-        Gson gson=new Gson();
+    public static OrderDTO convert(OrderForm orderForm) {
+        Gson gson = new Gson();
 
-        OrderDTO orderDTO=new OrderDTO();
+        OrderDTO orderDTO = new OrderDTO();
 
         orderDTO.setBuyerName(orderForm.getName());
         orderDTO.setBuyerPhone(orderForm.getPhone());
@@ -28,22 +28,22 @@ public class OrderForm2OrderDTOConverter {
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
 
-        System.out.println("llllllllllllllllllllllllllllll"+orderForm);
+        System.out.println("llllllllllllllllllllllllllllll" + orderForm);
         //todo
         //在进行字符转字符串
         //pom.xml文件中出错，加入了gson依赖但是检测不到。
-       try {
-           //将orderForm的getItems中数据转换成一个新的类型List<OrderDetail>
-         orderDetailList=gson.fromJson(orderForm.getItems(),
-                   new TypeToken<List<OrderDetail>>() {
-                   }.getType());
-       }catch (Exception e){
-           log.error("【对象转换】错误，string={}",orderForm.getItems());
-           throw  new SellException(ResultEnum.PARAM_ERROR);
-       }
+        try {
+            //将orderForm的getItems中数据转换成一个新的类型List<OrderDetail>
+            orderDetailList = gson.fromJson(orderForm.getItems(),
+                    new TypeToken<List<OrderDetail>>() {
+                    }.getType());
+        } catch (Exception e) {
+            log.error("【对象转换】错误，string={}", orderForm.getItems());
+            throw new SellException(ResultEnum.PARAM_ERROR);
+        }
 
         orderDTO.setOrderDetailList(orderDetailList);
-        System.out.println("3333333333333333333333333333"+orderDTO);
-       return orderDTO;
+        System.out.println("3333333333333333333333333333" + orderDTO);
+        return orderDTO;
     }
 }
